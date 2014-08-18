@@ -62,11 +62,11 @@ DIRFILESEP = /
 DFSEP = $(DIRFILESEP)
 NAME = Bio::RNA::SpliceSites::Scoring::MaxEntScan
 NAME_SYM = Bio_RNA_SpliceSites_Scoring_MaxEntScan
-VERSION = 0.01
+VERSION = 0.02
 VERSION_MACRO = VERSION
-VERSION_SYM = 0_01
+VERSION_SYM = 0_02
 DEFINE_VERSION = -D$(VERSION_MACRO)=\"$(VERSION)\"
-XS_VERSION = 0.01
+XS_VERSION = 0.02
 XS_VERSION_MACRO = XS_VERSION
 XS_DEFINE_VERSION = -D$(XS_VERSION_MACRO)=\"$(XS_VERSION)\"
 INST_ARCHLIB = blib/arch
@@ -164,7 +164,10 @@ C_FILES  =
 O_FILES  = 
 H_FILES  = 
 MAN1PODS = 
-MAN3PODS = lib/Bio/RNA/SpliceSites/Scoring/MaxEntScan.pm
+MAN3PODS = lib/Bio/RNA/SpliceSites/Scoring/MaxEntScan.pm \
+	lib/Bio/RNA/SpliceSites/Scoring/SpliceModels/me2x3acc.pm \
+	lib/Bio/RNA/SpliceSites/Scoring/SpliceModels/me2x5.pm \
+	lib/Bio/RNA/SpliceSites/Scoring/SpliceModels/splice5sequences.pm
 
 # Where is the Config information that we are using/depend on
 CONFIGDEP = $(PERL_ARCHLIB)$(DFSEP)Config.pm $(PERL_INC)$(DFSEP)config.h
@@ -268,7 +271,7 @@ RCS_LABEL = rcs -Nv$(VERSION_SYM): -q
 DIST_CP = best
 DIST_DEFAULT = tardist
 DISTNAME = Bio-RNA-SpliceSites-Scoring-MaxEntScan
-DISTVNAME = Bio-RNA-SpliceSites-Scoring-MaxEntScan-0.01
+DISTVNAME = Bio-RNA-SpliceSites-Scoring-MaxEntScan-0.02
 
 
 # --- MakeMaker macro section:
@@ -422,9 +425,15 @@ POD2MAN = $(POD2MAN_EXE)
 
 
 manifypods : pure_all  \
-	lib/Bio/RNA/SpliceSites/Scoring/MaxEntScan.pm
+	lib/Bio/RNA/SpliceSites/Scoring/MaxEntScan.pm \
+	lib/Bio/RNA/SpliceSites/Scoring/SpliceModels/me2x3acc.pm \
+	lib/Bio/RNA/SpliceSites/Scoring/SpliceModels/me2x5.pm \
+	lib/Bio/RNA/SpliceSites/Scoring/SpliceModels/splice5sequences.pm
 	$(NOECHO) $(POD2MAN) --section=3 --perm_rw=$(PERM_RW) \
-	  lib/Bio/RNA/SpliceSites/Scoring/MaxEntScan.pm $(INST_MAN3DIR)/Bio::RNA::SpliceSites::Scoring::MaxEntScan.$(MAN3EXT) 
+	  lib/Bio/RNA/SpliceSites/Scoring/MaxEntScan.pm $(INST_MAN3DIR)/Bio::RNA::SpliceSites::Scoring::MaxEntScan.$(MAN3EXT) \
+	  lib/Bio/RNA/SpliceSites/Scoring/SpliceModels/me2x3acc.pm $(INST_MAN3DIR)/Bio::RNA::SpliceSites::Scoring::SpliceModels::me2x3acc.$(MAN3EXT) \
+	  lib/Bio/RNA/SpliceSites/Scoring/SpliceModels/me2x5.pm $(INST_MAN3DIR)/Bio::RNA::SpliceSites::Scoring::SpliceModels::me2x5.$(MAN3EXT) \
+	  lib/Bio/RNA/SpliceSites/Scoring/SpliceModels/splice5sequences.pm $(INST_MAN3DIR)/Bio::RNA::SpliceSites::Scoring::SpliceModels::splice5sequences.$(MAN3EXT) 
 
 
 
@@ -511,7 +520,7 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '    - inc' >> META_new.yml
 	$(NOECHO) $(ECHO) 'requires:' >> META_new.yml
 	$(NOECHO) $(ECHO) '  perl: '\''5.006'\''' >> META_new.yml
-	$(NOECHO) $(ECHO) 'version: '\''0.01'\''' >> META_new.yml
+	$(NOECHO) $(ECHO) 'version: '\''0.02'\''' >> META_new.yml
 	-$(NOECHO) $(MV) META_new.yml $(DISTVNAME)/META.yml
 	$(NOECHO) $(ECHO) Generating META.json
 	$(NOECHO) $(ECHO) '{' > META_new.json
@@ -553,7 +562,7 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '      }' >> META_new.json
 	$(NOECHO) $(ECHO) '   },' >> META_new.json
 	$(NOECHO) $(ECHO) '   "release_status" : "stable",' >> META_new.json
-	$(NOECHO) $(ECHO) '   "version" : "0.01"' >> META_new.json
+	$(NOECHO) $(ECHO) '   "version" : "0.02"' >> META_new.json
 	$(NOECHO) $(ECHO) '}' >> META_new.json
 	-$(NOECHO) $(MV) META_new.json $(DISTVNAME)/META.json
 
